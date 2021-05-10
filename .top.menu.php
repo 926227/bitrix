@@ -22,25 +22,25 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Контакты", 
-		"contacts/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
 		"Акции", 
 		"promotion/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
-    Array(
-        "Партнерам",
-        "partners/",
-        Array(),
-        Array(),
-        ""
-    ),
+	Array(
+		"Партнерам", 
+		"partners/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Контакты", 
+		"contacts/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
 );
 ?>
