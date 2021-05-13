@@ -37,13 +37,13 @@ IncludeTemplateLangFile(__FILE__);
 						<p>Семинар производителей мебели России и СНГ, Обсуждение тенденций.</p>
 					</div>
 					<div class="sb_action">
-						<a href=""><img src="<?=SITE_TEMPLATE_PATH?>/../default/content/11.png" alt=""/></a>
+						<a href=""><img src="<?=SITE_TEMPLATE_PATH?>/../.default/content/11.png" alt=""/></a>
 						<h4>Акция</h4>
 						<h5><a href="">Мебельная полка всего за 560 Р</a></h5>
 						<a href="" class="sb_action_more">Подробнее &rarr;</a>
 					</div>
 					<div class="sb_reviewed">
-							<img src="<?=SITE_TEMPLATE_PATH?>/../default/content/8.png" class="sb_rw_avatar" alt=""/>
+							<img src="<?=SITE_TEMPLATE_PATH?>/../.default/content/8.png" class="sb_rw_avatar" alt=""/>
 							<span class="sb_rw_name">Сергей Антонов</span>
 							<span class="sb_rw_job">Руководитель финансового отдела “Банк+”</span>
 							<p>“Покупал офисные стулья и столы, остался очень доволен! Низкие цены, быстрая доставка, обслуживание на высоте! Спасибо!”</p>
@@ -90,7 +90,7 @@ IncludeTemplateLangFile(__FILE__);
 							<span class="street-address">ул. Летняя стр.12, офис 512</span>
 						</span>
 						<span class="tel">8 (495) 212-85-06</span>
-						<strong>Время работы:</strong> <br/> <span class="workhours">ежедневно с 9-00 до 18-00</span><br/>
+						<strong><?=GetMessage('WORKING_TIME')?>:</strong> <br/> <span class="workhours">ежедневно с 9-00 до 18-00</span><br/>
 					</p>
 					<ul class="ft_solcial">
 						<li><a href="" class="fb"></a></li>
