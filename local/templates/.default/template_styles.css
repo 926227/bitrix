@@ -517,6 +517,7 @@ input {
   padding-left: 0;
   background: none;
 }
+.bc_breadcrumbs ul li,
 .bc_breadcrumbs ul li a {
   font-size: 12px;
   color: #4c5d6b;
