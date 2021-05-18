@@ -9,6 +9,7 @@
 /upload/*
 !/upload/medialibrary
 
+test.php
 
 *.rar
 *.zip
