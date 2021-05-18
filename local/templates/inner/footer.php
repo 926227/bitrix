@@ -31,11 +31,17 @@ IncludeTemplateLangFile(__FILE__);
 							</li>
 						</ul>
 					</div>
-					<div class="sb_event">
-						<div class="sb_event_header"><h4>Ближайшие события</h4></div>
-						<p><a href="">29 августа 2012, Москва</a></p>
-						<p>Семинар производителей мебели России и СНГ, Обсуждение тенденций.</p>
-					</div>
+					
+					<?$APPLICATION->IncludeComponent(
+						"bitrix:main.include",
+						"",
+						Array(
+							"AREA_FILE_RECURSIVE" => "Y",
+							"AREA_FILE_SHOW" => "sect",
+							"AREA_FILE_SUFFIX" => "inc",
+							"EDIT_TEMPLATE" => ""
+						)
+					);?>
 					<div class="sb_action">
 						<a href=""><img src="<?=SITE_TEMPLATE_PATH?>/../.default/content/11.png" alt=""/></a>
 						<h4>Акция</h4>
@@ -87,9 +93,31 @@ IncludeTemplateLangFile(__FILE__);
 					<!-- vCard        http://help.yandex.ru/webmaster/hcard.pdf      -->
 					<p class="vcard">
 						<span class="adr">
-							<span class="street-address">ул. Летняя стр.12, офис 512</span>
+							<span class="street-address">
+								<?$APPLICATION->IncludeComponent(
+										"bitrix:main.include",
+										"",
+										Array(
+											"AREA_FILE_SHOW" => "file",
+											"AREA_FILE_SUFFIX" => "inc",
+											"EDIT_TEMPLATE" => "",
+											"PATH" => "/include/address.php"
+										)
+								);?>
+							</span>
 						</span>
-						<span class="tel">8 (495) 212-85-06</span>
+						<span class="tel">
+							<?$APPLICATION->IncludeComponent(
+									"bitrix:main.include",
+									"",
+									Array(
+										"AREA_FILE_SHOW" => "file",
+										"AREA_FILE_SUFFIX" => "inc",
+										"EDIT_TEMPLATE" => "",
+										"PATH" => "/include/phone.php"
+									)
+							);?>
+						</span>
 						<strong><?=GetMessage('WORKING_TIME')?>:</strong> <br/> <span class="workhours">ежедневно с 9-00 до 18-00</span><br/>
 					</p>
 					<ul class="ft_solcial">
