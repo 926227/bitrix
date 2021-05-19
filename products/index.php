@@ -1,6 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Продукция");
+$APPLICATION->SetTitle("Каталог");
+$APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 ?><?$APPLICATION->IncludeComponent("bitrix:catalog", ".default", array(
 	"IBLOCK_TYPE" => "products",
 	"IBLOCK_ID" => "2",
