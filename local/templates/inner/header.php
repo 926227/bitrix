@@ -7,7 +7,8 @@ IncludeTemplateLangFile(__FILE__);
 <head>
 	<?$APPLICATION->ShowHead();?>
 	<title><?$APPLICATION->ShowTitle()?></title>
-	<!-- 111 -->
+	<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/../.default/js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/../.default/js/functions.js"></script>
 	<link rel="stylesheet" href="/local/templates/.default/template_styles.css">
 	<link rel="shortcut icon" href="<?=SITE_TEMPLATE_PATH?>/../.default/favicon.ico" type="image/x-icon">
 	
