@@ -4,38 +4,33 @@ IncludeTemplateLangFile(__FILE__);
 					</div>
 				</div>
 				<div class="sb_sidebar">
-					<div class="sb_nav">
-						<ul>
-							<li class="close"><a href=""><span>Каталог</span></a></li>
-							<li class="close"><a href=""><span>Кухни</span></a></li>
-							<li class="close"><a href=""><span>Гарнитуры</span></a></li>
-							<li class="open current">
-								<span class="sb_showchild"></span>
-								<a href=""><span>Спальни</span></a>
-								<ul>
-									<li><a href="">Одноместрые</a></li>
-									<li><a href="">Двухместные</a></li>
-									<li><a href="">Детские</a></li>
-								</ul>
-							</li>
-							<li class="close"><a href=""><span>Кухни</span></a></li>
-							<li class="close"><a href=""><span>Гарнитуры</span></a></li>
-							<li class="close">
-								<span class="sb_showchild"></span>
-								<a href=""><span>Спальни</span></a>
-								<ul>
-									<li><a href="">Одноместрые</a></li>
-									<li><a href="">Двухместные</a></li>
-									<li><a href="">Детские</a></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-					<div class="sb_event">
-						<div class="sb_event_header"><h4>Ближайшие события</h4></div>
-						<p><a href="">29 августа 2012, Москва</a></p>
-						<p>Семинар производителей мебели России и СНГ, Обсуждение тенденций.</p>
-					</div>
+					<?$APPLICATION->IncludeComponent(
+						"bitrix:menu",
+						"left_sidebar",
+						Array(
+							"ALLOW_MULTI_SELECT" => "N",
+							"CHILD_MENU_TYPE" => "left",
+							"DELAY" => "N",
+							"MAX_LEVEL" => "2",
+							"MENU_CACHE_GET_VARS" => array(0=>"",),
+							"MENU_CACHE_TIME" => "3600",
+							"MENU_CACHE_TYPE" => "N",
+							"MENU_CACHE_USE_GROUPS" => "Y",
+							"ROOT_MENU_TYPE" => "left",
+							"USE_EXT" => "N"
+						)
+					);?>
+					
+					<?$APPLICATION->IncludeComponent(
+						"bitrix:main.include",
+						"",
+						Array(
+							"AREA_FILE_RECURSIVE" => "Y",
+							"AREA_FILE_SHOW" => "sect",
+							"AREA_FILE_SUFFIX" => "inc",
+							"EDIT_TEMPLATE" => ""
+						)
+					);?>
 					<div class="sb_action">
 						<a href=""><img src="<?=SITE_TEMPLATE_PATH?>/../.default/content/11.png" alt=""/></a>
 						<h4>Акция</h4>
@@ -55,57 +50,7 @@ IncludeTemplateLangFile(__FILE__);
 			</div>
 		</div>
 
-		<div class="ft_footer">
-			<div class="ft_container">
-				<div class="ft_about">
-					<h4>О магазине</h4>
-					<ul>
-						<li><a href="">Отзывы</a></li>
-						<li><a href="">Контакты</a></li>
-						<li><a href="">Руководство</a></li>
-						<li><a href="">История</a></li>
-					</ul>
-				</div>
-				<div class="ft_catalog">
-					<h4>Каталог товаров</h4>
-					<ul>
-						<li><a href="">Кухни</a></li>
-						<li><a href="">Кровати и кушетки</a></li>
-						<li><a href="">Гарнитуры</a></li>
-						<li><a href="">Тумобчки и прихожие</a></li>
-						<li><a href="">Спальни и матрасы</a></li>
-						<li><a href="">Аксессуары</a></li>
-						<li><a href="">Столы и стулья</a></li>
-						<li><a href="">Каталоги мебели</a></li>
-						<li><a href="">Раскладные диваны</a></li>
-						<li><a href="">Кресла</a></li>
-					</ul>
-					
-				</div>
-				<div class="ft_contacts">
-					<h4><?=GetMessage('CONTACT_INFO') ?></h4>
-					<!-- vCard        http://help.yandex.ru/webmaster/hcard.pdf      -->
-					<p class="vcard">
-						<span class="adr">
-							<span class="street-address">ул. Летняя стр.12, офис 512</span>
-						</span>
-						<span class="tel">8 (495) 212-85-06</span>
-						<strong><?=GetMessage('WORKING_TIME')?>:</strong> <br/> <span class="workhours">ежедневно с 9-00 до 18-00</span><br/>
-					</p>
-					<ul class="ft_solcial">
-						<li><a href="" class="fb"></a></li>
-						<li><a href="" class="tw"></a></li>
-						<li><a href="" class="ok"></a></li>
-						<li><a href="" class="vk"></a></li>
-					</ul>
-					<div class="ft_copyright">© 2000 - 2012 "Мебельный магазин" </div>
-					
-					
-				</div>
-				
-				<div class="clearboth"></div>
-			</div>
-		</div>
+		<? include_once($_SERVER["DOCUMENT_ROOT"] . "/local/templates/.default/include/footer.php");?>
 	</div>
 </body>
 </html>
