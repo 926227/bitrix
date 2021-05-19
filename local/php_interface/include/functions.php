@@ -2,7 +2,7 @@
 function dump($var, $print = false, $die = false, $all = false)
 {
     global $USER;
-    if( ($USER->GetID() == 1) || ($all == true))
+    if($USER->IsAdmin() || ($all == true))
     {
         if ($print) {
             ?>
