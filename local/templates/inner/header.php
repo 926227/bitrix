@@ -8,8 +8,8 @@ IncludeTemplateLangFile(__FILE__);
 	<?$APPLICATION->ShowHead();?>
 	<title><?$APPLICATION->ShowTitle()?></title>
 	<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/../.default/js/jquery-1.8.2.min.js"></script>
-	<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/../.default/js/slides.min.jquery.js"></script>
-	<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/../.default/js/jquery.carouFredSel-6.1.0-packed.js"></script>
+	<!-- <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/../.default/js/slides.min.jquery.js"></script>
+	<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/../.default/js/jquery.carouFredSel-6.1.0-packed.js"></script> -->
 	<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/../.default/js/functions.js"></script>
 	<link rel="stylesheet" href="/local/templates/.default/template_styles.css">
 	<link rel="shortcut icon" href="<?=SITE_TEMPLATE_PATH?>/../.default/favicon.ico" type="image/x-icon">

@@ -5,21 +5,24 @@ IncludeTemplateLangFile(__FILE__);
 				</div>
 				<div class="sb_sidebar">
 					<?$APPLICATION->IncludeComponent(
-						"bitrix:menu",
-						"left_sidebar",
-						Array(
-							"ALLOW_MULTI_SELECT" => "N",
-							"CHILD_MENU_TYPE" => "left",
-							"DELAY" => "N",
-							"MAX_LEVEL" => "2",
-							"MENU_CACHE_GET_VARS" => array(0=>"",),
-							"MENU_CACHE_TIME" => "3600",
-							"MENU_CACHE_TYPE" => "N",
-							"MENU_CACHE_USE_GROUPS" => "Y",
-							"ROOT_MENU_TYPE" => "left",
-							"USE_EXT" => "N"
-						)
-					);?>
+	"bitrix:menu", 
+	"left_sidebar", 
+	array(
+		"ALLOW_MULTI_SELECT" => "N",
+		"CHILD_MENU_TYPE" => "left",
+		"DELAY" => "N",
+		"MAX_LEVEL" => "2",
+		"MENU_CACHE_GET_VARS" => array(
+		),
+		"MENU_CACHE_TIME" => "3600",
+		"MENU_CACHE_TYPE" => "N",
+		"MENU_CACHE_USE_GROUPS" => "Y",
+		"ROOT_MENU_TYPE" => "left",
+		"USE_EXT" => "Y",
+		"COMPONENT_TEMPLATE" => "left_sidebar"
+	),
+	false
+);?>
 					
 					<!-- Поле секционной вставки -->
 					<?$APPLICATION->IncludeComponent(
@@ -35,7 +38,7 @@ IncludeTemplateLangFile(__FILE__);
 					<!-- Акции -->
 					<?$APPLICATION->IncludeComponent(
 						"bitrix:news.list",
-						"seles",
+						"sales",
 						Array(
 							"ACTIVE_DATE_FORMAT" => "j F Y",
 							"ADD_SECTIONS_CHAIN" => "N",
