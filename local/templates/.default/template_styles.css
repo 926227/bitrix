@@ -1794,6 +1794,8 @@ input {
   position: relative;
 }
 .review-img-wrap {
+  /* width: 88px;
+  height: 88px; */
   background: #fff;
   border: 1px solid #d1d1d1;
   border-radius: 2px;
@@ -1805,6 +1807,8 @@ input {
 }
 
 .review-img-wrap img {
+  width: 66px;
+  height: 66px;
   display: block;
   border: none;
 }
