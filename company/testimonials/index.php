@@ -2,9 +2,9 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Отзывы");
 ?><?$APPLICATION->IncludeComponent(
-	"bitrix:news.list",
-	"testimonials_all",
-	Array(
+	"bitrix:news.list", 
+	"testimonials_all", 
+	array(
 		"ACTIVE_DATE_FORMAT" => "j F Y",
 		"ADD_SECTIONS_CHAIN" => "N",
 		"AJAX_MODE" => "N",
@@ -25,7 +25,13 @@ $APPLICATION->SetTitle("Отзывы");
 		"DISPLAY_PICTURE" => "Y",
 		"DISPLAY_PREVIEW_TEXT" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",
-		"FIELD_CODE" => array(0=>"ID",1=>"NAME",2=>"DETAIL_TEXT",3=>"DETAIL_PICTURE",4=>"",),
+		"FIELD_CODE" => array(
+			0 => "ID",
+			1 => "NAME",
+			2 => "DETAIL_TEXT",
+			3 => "DETAIL_PICTURE",
+			4 => "",
+		),
 		"FILTER_NAME" => "",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 		"IBLOCK_ID" => "5",
@@ -44,7 +50,11 @@ $APPLICATION->SetTitle("Отзывы");
 		"PARENT_SECTION" => "",
 		"PARENT_SECTION_CODE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "",
-		"PROPERTY_CODE" => array(0=>"POSITION",1=>"COMPANY",2=>"",),
+		"PROPERTY_CODE" => array(
+			0 => "POSITION",
+			1 => "COMPANY",
+			2 => "",
+		),
 		"SET_BROWSER_TITLE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_META_DESCRIPTION" => "Y",
@@ -57,5 +67,6 @@ $APPLICATION->SetTitle("Отзывы");
 		"SORT_ORDER1" => "rand",
 		"SORT_ORDER2" => "",
 		"STRICT_SECTION_CHECK" => "N"
-	)
+	),
+	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
