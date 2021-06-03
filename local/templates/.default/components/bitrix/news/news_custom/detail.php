@@ -12,6 +12,8 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 ?>
+
+<div class="ps_content">
 <?$ElementID = $APPLICATION->IncludeComponent(
 	"bitrix:news.detail",
 	"",
@@ -68,7 +70,10 @@ $this->setFrameMode(true);
 	),
 	$component
 );?>
-<p><a href="<?=$arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"]?>"><?=GetMessage("T_NEWS_DETAIL_BACK")?></a></p>
+
+	<a href="<?=$arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"]?>" class="ps_backnewslist"> <?=GetMessage("T_NEWS_DETAIL_BACK")?></a>
+</div>
+
 <?if($arParams["USE_RATING"]=="Y" && $ElementID):?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:iblock.vote",
