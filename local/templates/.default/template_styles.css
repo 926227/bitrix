@@ -1310,7 +1310,7 @@ input {
   border-bottom: none !important;
 }
 .il_fl_filter.close .il_fl_field,
-.sb_nav > ul > li.close ul,
+.sb_nav > ul > li.close-menu ul,
 .vc_content > ul > li.close ul {
   height: 0;
   overflow: hidden;
@@ -1378,7 +1378,7 @@ input {
   border-bottom: 1px solid #e3eeef;
 }
 .sb_nav > ul > li:last-child ul > li:last-child,
-.sb_nav > ul > li.close:last-child > a > span {
+.sb_nav > ul > li.close-menu:last-child > a > span {
   border: none !important;
 }
 
