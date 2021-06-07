@@ -22,7 +22,7 @@
 							<?=GetMessage('WORKING_TIME')?> <span class="workhours">ежедневно с 9-00 до 18-00</span>						
 						</td>
 						<td style="width:232px">
-							<?$APPLICATION->IncludeComponent(
+						<?$APPLICATION->IncludeComponent(
 									"bitrix:search.form",
 									"search",
 								Array()

@@ -4,7 +4,7 @@ $APPLICATION->SetTitle("Каталог");
 $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:catalog", 
-	".default", 
+	"Goods", 
 	array(
 		"IBLOCK_TYPE" => "products",
 		"IBLOCK_ID" => "2",
@@ -27,7 +27,7 @@ $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 		"SECTION_SHOW_PARENT_NAME" => "N",
 		"SET_TITLE" => "Y",
 		"SET_STATUS_404" => "Y",
-		"USE_FILTER" => "N",
+		"USE_FILTER" => "Y",
 		"USE_COMPARE" => "N",
 		"PRICE_CODE" => array(
 			0 => "PRICE",
@@ -74,7 +74,7 @@ $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 		"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000000",
 		"PAGER_SHOW_ALL" => "N",
 		"AJAX_OPTION_ADDITIONAL" => "",
-		"COMPONENT_TEMPLATE" => ".default",
+		"COMPONENT_TEMPLATE" => "Goods",
 		"TEMPLATE_THEME" => "blue",
 		"ADD_PICT_PROP" => "-",
 		"LABEL_PROP" => array(
@@ -128,7 +128,7 @@ $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 		"DETAIL_CHECK_SECTION_ID_VARIABLE" => "N",
 		"DETAIL_BACKGROUND_IMAGE" => "-",
 		"SHOW_DEACTIVATED" => "N",
-		"DETAIL_USE_VOTE_RATING" => "N",
+		"DETAIL_USE_VOTE_RATING" => "Y",
 		"DETAIL_USE_COMMENTS" => "N",
 		"DETAIL_BRAND_USE" => "N",
 		"DETAIL_DISPLAY_NAME" => "Y",
@@ -154,6 +154,18 @@ $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 		"COMPATIBLE_MODE" => "Y",
 		"USE_ELEMENT_COUNTER" => "Y",
 		"DISABLE_INIT_JS_IN_COMPONENT" => "N",
+		"FILTER_NAME" => "",
+		"FILTER_FIELD_CODE" => array(
+			0 => "",
+			1 => "",
+		),
+		"FILTER_PROPERTY_CODE" => array(
+			0 => "MANUFACTURER",
+			1 => "",
+		),
+		"FILTER_PRICE_CODE" => array(
+		),
+		"DETAIL_VOTE_DISPLAY_AS_RATING" => "rating",
 		"SEF_URL_TEMPLATES" => array(
 			"sections" => "",
 			"section" => "#SECTION_CODE#/",
