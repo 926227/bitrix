@@ -14,7 +14,7 @@ foreach($arResult as $arItem):?>
 	<?if ($arItem["IS_PARENT"]):?>
 
 		<?if ($arItem["DEPTH_LEVEL"] == 1):?>
-			<li class="close <?if ($arItem["SELECTED"]):?>current<?endif?>">
+			<li class="close-menu <?if ($arItem["SELECTED"]):?>current<?endif?>">
 				<span class="sb_showchild"></span>
 				<a href="<?=$arItem["LINK"]?>"><span><?=$arItem["TEXT"]?></span></a>
 				<ul>
@@ -28,7 +28,7 @@ foreach($arResult as $arItem):?>
 		<?if ($arItem["PERMISSION"] > "D"):?>
 
 			<?if ($arItem["DEPTH_LEVEL"] == 1):?>
-				<li class="close <?if ($arItem["SELECTED"]):?>current<?endif?>">
+				<li class="close-menu <?if ($arItem["SELECTED"]):?>current<?endif?>">
 					<a href="<?=$arItem["LINK"]?>">
 						<span><?=$arItem["TEXT"]?></span>
 					</a>
