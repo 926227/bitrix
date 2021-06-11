@@ -43,10 +43,10 @@ while ($i < $iCountMax) {
   $i++;  
 
   if ($i >0 && ($i % $iStep === 0 || $i === $iCountMax)) {
-    echo json_encode($arAdd);
+    echo json_encode(['addTotal' => $arAdd['addTotal']])."*";
     ob_end_flush();
     flush();
-
     $arAdd["addStep"] = 0;
   }
 }
+echo json_encode(['addTotal' => $arAdd['addTotal']]);
