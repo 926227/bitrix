@@ -3,68 +3,72 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("1C-Битрикс: Тестирование API");
 
 ?>
+
+<style>
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+form{
+  margin-bottom: 20px;
+}
+</style>
+
 <div class="container" style="height:500px;">
     <h3>Добавление информации в информационный блок.</h3>
     <form id="formElem">
       <label>
       Номер информационного блока:
-      <input type="text" name="iblock">
+      <input type="number" name="iblock" required>
       </label>
-      <br>
       <label>
       Шаг:
-      <input type="text" name="step">
+      <input type="number" name="step" required>
       </label>
-      <br>
       <label>
       Всего добавить:
-      <input type="text" name="count">
+      <input type="number" name="count" required>
       </label>
-      <br>
-      <button type="submit">Сделать запрос</button>
+      <button id="submitButton" type="submit">Сделать запрос</button>
     </form>
-
-    <div id="board" ></div>
+    <div id="board" >Добавлено элементов: <span id="number"></span></div>
+    <div id="result"></div>
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <script>
   const onSubmit = (evt) => {
     evt.preventDefault();
+    if (!formElem[0].value || !formElem[1].value || !formElem[2].value) {
+      $('#result').html('Пожалуйста заполните все поля');
+    }
     getData(formElem[0].value, formElem[1].value, formElem[2].value)
   }
 
   formElem.addEventListener('submit', onSubmit);
 
   const getData = async (iblock, step, count) => {
-    let response = await fetch(`http://bitrix.loc/local/api/api_add.php?IBLOCK=${iblock}&STEP=${step}&COUNT=${count}&apikey=RUN2021`);
-    const reader = response.body.getReader();
-    let result;
+    $('#number').html('');
+    $('#result').html('');
+    $('#submitButton').attr('disabled', true);
 
-    board.innerHTML = '';
-    let info = document.createElement('h3');
-    info.textContent = 'Добавляем элементы:';
-    board.append(info);
-
-    while(true) {
-      const {done, value} = await reader.read();
-
-      if (done) {
-        break;
+    $.ajax({
+      url:`http://bitrix.loc/local/api/api_add.php?IBLOCK=${iblock}&STEP=${step}&COUNT=${count}&apikey=RUN2021`,
+      success:function(response) {
+        $('#result').html('Добавление элементов завершено.');
+        $('#submitButton').attr('disabled', false);
+      },
+      xhr: function(){
+          let xhr = $.ajaxSettings.xhr() ;
+          xhr.onprogress = function(evt){ 
+            const serverResult = evt.currentTarget.responseText.split('*');
+            const elementsAdded = JSON.parse(serverResult[serverResult.length - 2]).addTotal;
+            $('#number').html(elementsAdded);
+          };
+          return xhr ;
       }
-
-      const text = new TextDecoder("utf-8").decode(value);
-      result = JSON.parse(text);
-      info = document.createElement('p');
-      info.textContent = `Добавлено элементов: ${result.addStep}`;
-      board.append(info);
-      console.log(result);
-    }
-
-    info = document.createElement('p');
-    info.textContent = `Всего добавлено элементов: ${result.addTotal}`;
-    board.append(info);
-    console.log('Total:', result.addTotal)
-  };
+    });
+}
 </script>
 <?
 include_once($_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH."/footer.php");
