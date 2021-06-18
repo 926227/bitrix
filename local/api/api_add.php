@@ -1,53 +1,66 @@
 <?php
+require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
+CModule::IncludeModule("iblock");
 
 use Bitrix\Main\Application;
+const DEFAULT_VALUES = [
+    "keyToStartScript" => 'RUN2021',
+    "infoBlockNumber" => 7,
+    "stepNumberOfElementsToAdd" => 1,
+    "totalNumberOfElementsToAdd" => 1
+];
 global $USER;
-const KEY_TO_START_SCRIPT = 'RUN2021';
-class elementAddExeption extends Exception{};
+define("iCurrentUserID", $USER->GetID());
 
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
-    require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
+class elementAddExeption extends Exception
+{
 }
-try{
-    if ($_SERVER["REQUEST_METHOD"] <> "GET") throw new Exception(' 500 Server Error');
-    if (!check_bitrix_sessid()) throw new Exception(' 500 Server Error');
 
+try {
     $oInstance = Application::getInstance();
     $oContext = $oInstance->getContext();
     $oRequest = $oContext->getRequest();
-
-    if (!$oRequest->isAjaxRequest()) throw new Exception(' 500 Server Error');
-
     $sCheckStartScriptKey = $oRequest->getQuery("apikey");
-    if ($sCheckStartScriptKey <> KEY_TO_START_SCRIPT) throw new Exception(' 500 Server Error');
 
-    $iTotalNumberOfElementsToAdd = (int)$oRequest->getQuery("count") ?? 0;
-    $iStepNumberOfElementsToAdd = (int)$oRequest->getQuery("step") ?? 1;
-    $iIBlockId = (int)$oRequest->getQuery("iblock") ?? 7;
+    if ($_SERVER["REQUEST_METHOD"] <> "GET"
+        || !check_bitrix_sessid()
+        || !$oRequest->isAjaxRequest()
+        || $sCheckStartScriptKey <> DEFAULT_VALUES["keyToStartScript"]) {
+        throw new Exception(' 500 Server Error');
+    }
+
+    $iTotalNumberOfElementsToAdd = (int)$oRequest->getQuery("count")
+        ?? DEFAULT_VALUES["totalNumberOfElementsToAdd"];
+    $iStepNumberOfElementsToAdd = (int)$oRequest->getQuery("step")
+        ?? DEFAULT_VALUES["stepNumberOfElementsToAdd"];
+    $iIBlockId = (int)$oRequest->getQuery("iblock")
+        ?? DEFAULT_VALUES["infoBlockNumber"];
     $arAddElementsCounter = ["addTotal" => 0, "addDuringStep" => 0];
 
-    if ($iTotalNumberOfElementsToAdd < 1 || $iStepNumberOfElementsToAdd < 1 || $iTotalNumberOfElementsToAdd <
-        $iStepNumberOfElementsToAdd) throw new Exception(' 400 Bad Request');
+    if ($iTotalNumberOfElementsToAdd < 1
+        || $iStepNumberOfElementsToAdd < 1
+        || $iTotalNumberOfElementsToAdd < $iStepNumberOfElementsToAdd) {
+        throw new Exception(' 400 Bad Request');
+    }
 
-    CModule::IncludeModule("iblock");
     $oInfoBlockElement = new CIBlockElement();
     $iNumberOfElementsInfoBlock = CIBlockElement::GetList(
-        array(),
-        array('IBLOCK_ID' => $iIBlockId),
-        array(),
+        [],
+        ['IBLOCK_ID' => $iIBlockId],
+        [],
         false,
-        array('ID', 'NAME')
+        ['ID', 'NAME']
     );
     $iProposeElementNumber = $iNumberOfElementsInfoBlock + 1;
 
     while ($arAddElementsCounter["addTotal"] < $iTotalNumberOfElementsToAdd) {
-        $arProps = array();
+        $arProps = [];
         $arProps['CITY'][0] = "Город #$iProposeElementNumber";
         $arProps['CITY'][1] = "Страна #$iProposeElementNumber";
         $arProps['CITY'][2] = "Регион #$iProposeElementNumber";
 
-        $arLoadArray = array(
-            "MODIFIED_BY" => $USER->GetID(),
+        $arLoadArray = [
+            "MODIFIED_BY" => iCurrentUserID,
             "IBLOCK_SECTION_ID" => false,
             "IBLOCK_ID" => $iIBlockId,
             "PROPERTY_VALUES" => $arProps,
@@ -56,7 +69,7 @@ try{
             "ACTIVE" => "Y",
             "PREVIEW_TEXT" => "Добавлено с помощью скрипта",
             "DETAIL_TEXT" => "Добавлено с помощью скрипта",
-        );
+        ];
         if ($oInfoBlockElement->Add($arLoadArray)) {
             $arAddElementsCounter["addTotal"]++;
             $arAddElementsCounter["addDuringStep"]++;
@@ -64,7 +77,9 @@ try{
             throw new elementAddExeption($oInfoBlockElement->LAST_ERROR);
         }
 
-        if ($arAddElementsCounter["addDuringStep"] > 0 && ($arAddElementsCounter["addDuringStep"] >= $iStepNumberOfElementsToAdd || $arAddElementsCounter["addTotal"] === $iTotalNumberOfElementsToAdd)) {
+        if ($arAddElementsCounter["addDuringStep"] > 0
+            && ($arAddElementsCounter["addDuringStep"] >= $iStepNumberOfElementsToAdd
+                || $arAddElementsCounter["addTotal"] === $iTotalNumberOfElementsToAdd)) {
             echo json_encode(['addTotal' => $arAddElementsCounter['addTotal']]) . "*";
             ob_end_flush();
             flush();
@@ -73,13 +88,11 @@ try{
 
         $iProposeElementNumber++;
     }
-}
-catch (elementAddExeption $e){
+} catch (elementAddExeption $e) {
     header($_SERVER['SERVER_PROTOCOL'] . ' 500 Server Error');
     echo $e->getMessage();
     exit();
-}
-catch (Exception $e){
+} catch (Exception $e) {
     header($_SERVER['SERVER_PROTOCOL'] . $e->getMessage());
     exit();
 }
