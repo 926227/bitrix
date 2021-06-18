@@ -3,8 +3,6 @@
 if (file_exists($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/include/functions.php")) {
     require_once ($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/include/functions.php");
 }
-if (file_exists($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/include/external-js.php")) {
-    require_once ($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/include/external-js.php");
+if (file_exists($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/include/external-lib.php")) {
+    require_once ($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/include/external-lib.php");
 }
-
-
