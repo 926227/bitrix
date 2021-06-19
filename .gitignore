@@ -6,7 +6,10 @@
 /bitrix/cache
 /bitrix/backup
 /local/vendor
-/upload
+/upload/*
+!/upload/medialibrary
+
+test.php
 
 *.rar
 *.zip
