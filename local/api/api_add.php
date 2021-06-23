@@ -3,14 +3,14 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.
 CModule::IncludeModule("iblock");
 
 use Bitrix\Main\Application;
-const DEFAULT_VALUES = [
+global $USER;
+define(DEFAULT_VALUES, [
     "keyToStartScript" => 'RUN2021',
     "infoBlockNumber" => 7,
     "stepNumberOfElementsToAdd" => 1,
     "totalNumberOfElementsToAdd" => 1
-];
-global $USER;
-define("iCurrentUserID", $USER->GetID());
+]);
+define("CURRENT_USER_ID", $USER->GetID());
 
 class elementAddExeption extends Exception
 {
@@ -60,7 +60,7 @@ try {
         $arProps['CITY'][2] = "Регион #$iProposeElementNumber";
 
         $arLoadArray = [
-            "MODIFIED_BY" => iCurrentUserID,
+            "MODIFIED_BY" => CURRENT_USER_ID,
             "IBLOCK_SECTION_ID" => false,
             "IBLOCK_ID" => $iIBlockId,
             "PROPERTY_VALUES" => $arProps,
